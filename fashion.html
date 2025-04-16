@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Virtual Wardrobe</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(120deg, #f0f0f0, #fafafa);
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: white;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      height: 360px;
+      background-color: #eee;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.3s ease;
+      height: 100%;
+    }
+
+    .slider img {
+      height: 100%;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      flex-shrink: 0;
+      user-select: none;
+      padding: 0 10px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #444;
+    }
+
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      justify-content: space-between;
+    }
+
+    label {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    input[type="range"], select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Virtual Wardrobe</h1>
+  </header>
+
+  <div class="container">
+    <h3>Top</h3>
+    <div class="slider-container" ontouchstart="startTouch(event, 'top')" ontouchend="endTouch(event, 'top')">
+      <div class="slider" id="topSlider">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTFbnFFMRWVNR1qJ53e978srp-yxizR-BFeC8POV_2jUtbdzrFOyoroTY1NYh437tyW_Z6_2Ojv3W1Oc7nxkEe0mYM0gkvbBJC35URoNbXM3UmHO4BPfv2bqg" alt="Top 1">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRYJDX26sOJQ0KP081mJ0Vkgzzgt_TPcl-Ph1AQ2HNkJO_8TSuueqxdsMrMyzizi6meF7L78dmzt31JxQEOmLoCCsoIyvHYLM6dblr-nj2wMUcZBdNs1M4PNw" alt="Top 2">
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ4wWhJ8ns6T9xw6G0P7J7lrLAJSaZL14vHrynK7FiZyvYlfOI0YiNoVnsWFKTR7j_6ewC6U8kFcboFq6R4nXEZ-uRlRF3sWPxR_tv8vI5UJjz9To2ovcl3VA" alt="Top 3">
+      </div>
+    </div>
+    <div class="controls">
+      <button onclick="changeTop(-1)">⬅️ Prev</button>
+      <button onclick="changeTop(1)">Next ➡️</button>
+    </div>
+ 
+    <h3>Bottom</h3>
+    <div class="slider-container" ontouchstart="startTouch(event, 'bottom')" ontouchend="endTouch(event, 'bottom')">
+      <div class="slider" id="bottomSlider">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRlCxRcIGWqtZcW5voakrIyLacLogVeA5u2Qsl5iPUDls__bk1eXTwtXs-9XQrn_PPQ9l6wT79BPZfouDwJUCwe9O--2ObBt4js7Es42blcEdUq1Um-ySSJFA" alt="Bottom 1">
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRg7HvFnWxJKWsROo0Bi1HeGrsSAljpvkZx_JaV5XCe6kNZMzPx71XEEw5SMJbDZ37u-2enhSndmFWPu5MQRMAD2xPwrbIjdqnzKN95Vgk" alt="Bottom 2">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRGEn-81MxtfJKNes1rRlndJPp1pV_oE5PjsXyjWXNkNvQ_3Sayd6B0fRu7fsARSFwzESAyc84lxtrp6MExoeFbNdVz2j7J98mSncs8e_JqPG6ul5VSd2ljKw" alt="Bottom 3">
+      </div>
+    </div>
+    <div class="controls">
+      <button onclick="changeBottom(-1)">⬅️ Prev</button>
+      <button onclick="changeBottom(1)">Next ➡️</button>
+    </div>
+
+    <div class="form-section">
+      <label>R:
+        <input type="range" id="r" min="0" max="255" value="255" onchange="sendColor()">
+      </label>
+      <label>G:
+        <input type="range" id="g" min="0" max="255" value="255" onchange="sendColor()">
+      </label>
+      <label>B:
+        <input type="range" id="b" min="0" max="255" value="255" onchange="sendColor()">
+      </label>
+      <label>Size:
+        <select id="sizeSelect" onchange="sendSize()">
+          <option value="small">Small</option>
+          <option value="medium" selected>Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <script>
+    const serverURL = "https://fashionshow.onrender.com/sendCommand";
+    let topIndex = 0;
+    let bottomIndex = 0;
+    const topSlider = document.getElementById('topSlider');
+    const bottomSlider = document.getElementById('bottomSlider');
+
+    function updateSlider(slider, index) {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function sendCommand(command) {
+      fetch(serverURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ command })
+      });
+    }
+
+    function changeTop(dir) {
+      topIndex = (topIndex + dir + topSlider.children.length) % topSlider.children.length;
+      updateSlider(topSlider, topIndex);
+      sendCommand(dir > 0 ? 'topNext' : 'topPrev');
+    }
+
+    function changeBottom(dir) {
+      bottomIndex = (bottomIndex + dir + bottomSlider.children.length) % bottomSlider.children.length;
+      updateSlider(bottomSlider, bottomIndex);
+      sendCommand(dir > 0 ? 'bottomNext' : 'bottomPrev');
+    }
+
+    function sendColor() {
+      const r = document.getElementById('r').value;
+      const g = document.getElementById('g').value;
+      const b = document.getElementById('b').value;
+      sendCommand(`color:${r},${g},${b}`);
+    }
+
+    function sendSize() {
+      const size = document.getElementById('sizeSelect').value;
+      sendCommand(`size:${size}`);
+    }
+
+    let touchStartX = 0;
+
+    function startTouch(e, type) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function endTouch(e, type) {
+      const endX = e.changedTouches[0].screenX;
+      const diff = endX - touchStartX;
+
+      if (Math.abs(diff) > 50) {
+        if (type === 'top') {
+          changeTop(diff < 0 ? 1 : -1);
+        } else {
+          changeBottom(diff < 0 ? 1 : -1);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
